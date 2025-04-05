@@ -12,12 +12,15 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,84 +29,96 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QTextEdit *textEdit;
+    QTextEdit *record;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QTextEdit *textEdit_2;
+    QTextEdit *msg;
     QLabel *label;
     QLabel *label_4;
     QWidget *layoutWidget;
     QGridLayout *gridLayout;
+    QLineEdit *ip;
     QLabel *label_2;
-    QLineEdit *lineEdit;
-    QPushButton *pushButton_3;
+    QPushButton *disconnect;
+    QPushButton *connect;
     QLabel *label_3;
-    QLineEdit *lineEdit_2;
-    QPushButton *pushButton_4;
+    QLineEdit *port;
+    QTreeView *file;
+    QTableView *table;
+    QPushButton *pushButton_3;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(622, 600);
+        MainWindow->resize(1284, 739);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        textEdit = new QTextEdit(centralwidget);
-        textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(10, 270, 601, 191));
+        record = new QTextEdit(centralwidget);
+        record->setObjectName("record");
+        record->setGeometry(QRect(650, 490, 601, 131));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(10, 480, 241, 51));
+        pushButton->setGeometry(QRect(650, 640, 241, 51));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(380, 480, 231, 51));
-        textEdit_2 = new QTextEdit(centralwidget);
-        textEdit_2->setObjectName("textEdit_2");
-        textEdit_2->setGeometry(QRect(10, 120, 601, 101));
+        pushButton_2->setGeometry(QRect(1020, 640, 231, 51));
+        msg = new QTextEdit(centralwidget);
+        msg->setObjectName("msg");
+        msg->setGeometry(QRect(650, 20, 601, 431));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(10, 240, 69, 19));
+        label->setGeometry(QRect(650, 460, 69, 19));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(10, 8, 271, 101));
+        label_4->setGeometry(QRect(10, 30, 271, 101));
         label_4->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/IMG_20230725_171039.jpg);"));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(300, 10, 311, 101));
+        layoutWidget->setGeometry(QRect(10, 170, 311, 101));
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        ip = new QLineEdit(layoutWidget);
+        ip->setObjectName("ip");
+
+        gridLayout->addWidget(ip, 0, 1, 1, 1);
+
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
 
         gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
-        lineEdit = new QLineEdit(layoutWidget);
-        lineEdit->setObjectName("lineEdit");
+        disconnect = new QPushButton(layoutWidget);
+        disconnect->setObjectName("disconnect");
 
-        gridLayout->addWidget(lineEdit, 0, 1, 1, 1);
+        gridLayout->addWidget(disconnect, 2, 3, 1, 1);
 
-        pushButton_3 = new QPushButton(layoutWidget);
-        pushButton_3->setObjectName("pushButton_3");
+        connect = new QPushButton(layoutWidget);
+        connect->setObjectName("connect");
 
-        gridLayout->addWidget(pushButton_3, 0, 2, 1, 1);
+        gridLayout->addWidget(connect, 0, 3, 1, 1);
 
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
 
-        gridLayout->addWidget(label_3, 1, 0, 1, 1);
+        gridLayout->addWidget(label_3, 2, 0, 1, 1);
 
-        lineEdit_2 = new QLineEdit(layoutWidget);
-        lineEdit_2->setObjectName("lineEdit_2");
+        port = new QLineEdit(layoutWidget);
+        port->setObjectName("port");
 
-        gridLayout->addWidget(lineEdit_2, 1, 1, 1, 1);
+        gridLayout->addWidget(port, 2, 1, 1, 1);
 
-        pushButton_4 = new QPushButton(layoutWidget);
-        pushButton_4->setObjectName("pushButton_4");
-
-        gridLayout->addWidget(pushButton_4, 1, 2, 1, 1);
-
+        file = new QTreeView(centralwidget);
+        file->setObjectName("file");
+        file->setGeometry(QRect(350, 40, 281, 231));
+        table = new QTableView(centralwidget);
+        table->setObjectName("table");
+        table->setGeometry(QRect(10, 290, 621, 401));
+        pushButton_3 = new QPushButton(centralwidget);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setGeometry(QRect(350, 10, 93, 28));
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -122,9 +137,10 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "\345\216\206\345\217\262\344\277\241\346\201\257", nullptr));
         label_4->setText(QString());
         label_2->setText(QCoreApplication::translate("MainWindow", "IP:", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\350\277\236\346\216\245\346\234\215\345\212\241\345\231\250", nullptr));
+        disconnect->setText(QCoreApplication::translate("MainWindow", "\346\226\255\345\274\200\346\234\215\345\212\241\345\231\250", nullptr));
+        connect->setText(QCoreApplication::translate("MainWindow", "\350\277\236\346\216\245\346\234\215\345\212\241\345\231\250", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Port:", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "\346\226\255\345\274\200\346\234\215\345\212\241\345\231\250", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\345\210\267\346\226\260", nullptr));
     } // retranslateUi
 
 };

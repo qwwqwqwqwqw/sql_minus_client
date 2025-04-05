@@ -9,12 +9,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle("sql-minus客户端");
     ui->disconnect->setEnabled(false);
+    model = new QStandardItemModel(this);
+    model->setHorizontalHeaderLabels({"数据库"}); // 设置列标题
+    ui->file->setModel(model); // 关联模型到视图
 
     m_tcp=new QTcpSocket(this);
 
+
     connect(m_tcp,&QTcpSocket::readyRead,this,[=](){
-        QByteArray data=m_tcp->readAll();
-        ui->record->append("服务端:"+data);
+        receivedData=m_tcp->readAll();
+        ui->record->append("服务端:"+receivedData);
+
+        handleDatabaseList();
     });
 
     connect(m_tcp, &QTcpSocket::disconnected, this, [=]()
@@ -31,6 +37,12 @@ MainWindow::MainWindow(QWidget *parent)
         ui->connect->setEnabled(false);
         ui->disconnect->setEnabled(true);
 
+    });
+
+    connect(m_tcp, &QTcpSocket::errorOccurred, this, [=](QAbstractSocket::SocketError error) {
+        Q_UNUSED(error);
+        ui->record->append("错误: " + m_tcp->errorString());
+        ui->pushButton_3->setEnabled(true); // 错误时恢复按钮
     });
 
 }
@@ -62,3 +74,38 @@ void MainWindow::on_connect_clicked()
     m_tcp->connectToHost(QHostAddress(ip),port);
 }
 
+
+void MainWindow::on_pushButton_3_clicked() {
+    QString msg_1 = "1";
+    m_tcp->write(msg_1.toUtf8());
+    ui->pushButton_3->setEnabled(false);
+    receivedData.clear(); // 准备接收新数据
+}
+
+void MainWindow::handleDatabaseList() {
+    // 假设数据以 \n\n 作为结束符（与服务器协议一致）
+    if (receivedData.contains("\n")) {
+        // 提取完整数据（去除结束符）
+        int endPos = receivedData.indexOf("\n");
+        QByteArray completeData = receivedData.left(endPos);
+        receivedData = receivedData.mid(endPos + 2); // 保留未处理数据
+
+        processData(completeData);
+        ui->pushButton_3->setEnabled(true); // 恢复按钮
+    }
+}
+
+void MainWindow::processData(const QByteArray &data) {
+    QString text = QString::fromUtf8(data).trimmed();
+    QStringList lines = text.split('\n', Qt::SkipEmptyParts);
+
+    model->clear();
+    model->setHorizontalHeaderLabels({"数据库"}); // 重新设置表头
+
+    for (const QString &line : lines) {
+        QStandardItem *item = new QStandardItem(line);
+        model->appendRow(item);
+    }
+
+    ui->record->append(QString("成功加载 %1 个数据库").arg(lines.size()));
+}

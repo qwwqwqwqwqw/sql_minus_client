@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QTcpSocket>
+#include <QTreeView>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,8 +30,17 @@ private slots:
 
     void on_connect_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void handleDatabaseList();
+    void processData(const QByteArray &data);
+
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_tcp;
+    QByteArray data;
+    QStandardItemModel *model;
+    QByteArray receivedData;
 };
 #endif // MAINWINDOW_H
