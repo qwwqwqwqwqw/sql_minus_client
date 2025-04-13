@@ -20,7 +20,10 @@ MainWindow::MainWindow(QWidget *parent)
         receivedData=m_tcp->readAll();
         ui->record->append("服务端:"+receivedData);
 
-        handleDatabaseList();
+        if (receivedData.endsWith("\n\n")) {
+            handleDatabaseList();
+            ui->pushButton_3->setEnabled(true); // 恢复按钮
+        }
     });
 
     connect(m_tcp, &QTcpSocket::disconnected, this, [=]()
@@ -83,17 +86,18 @@ void MainWindow::on_pushButton_3_clicked() {
 }
 
 void MainWindow::handleDatabaseList() {
-    // 假设数据以 \n\n 作为结束符（与服务器协议一致）
+    // 假设数据以 \n 作为结束符（与服务器协议一致）
     if (receivedData.contains("\n")) {
         // 提取完整数据（去除结束符）
-        int endPos = receivedData.indexOf("\n");
+        int endPos = receivedData.lastIndexOf("\n");
         QByteArray completeData = receivedData.left(endPos);
-        receivedData = receivedData.mid(endPos + 2); // 保留未处理数据
+        receivedData = receivedData.mid(endPos + 1); // 保留未处理数据
 
         processData(completeData);
         ui->pushButton_3->setEnabled(true); // 恢复按钮
     }
 }
+
 
 void MainWindow::processData(const QByteArray &data) {
     QString text = QString::fromUtf8(data).trimmed();
@@ -109,3 +113,4 @@ void MainWindow::processData(const QByteArray &data) {
 
     ui->record->append(QString("成功加载 %1 个数据库").arg(lines.size()));
 }
+
