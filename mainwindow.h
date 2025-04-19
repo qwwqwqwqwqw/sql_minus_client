@@ -34,6 +34,10 @@ private slots:
 
     void handleDatabaseList();
     void processData(const QByteArray &data);
+    void handleCurrentDatabase();
+    void onItemDoubleClicked(const QModelIndex &index);
+
+    void handleDescribeResponse(const QByteArray &data);
 
 
 private:
@@ -42,5 +46,6 @@ private:
     QByteArray data;
     QStandardItemModel *model;
     QByteArray receivedData;
+    QString currentDatabase;
 };
 #endif // MAINWINDOW_H

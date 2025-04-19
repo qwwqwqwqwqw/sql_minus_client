@@ -46,11 +46,16 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_pushButton_3_clicked",
     "handleDatabaseList",
     "processData",
-    "data"
+    "data",
+    "handleCurrentDatabase",
+    "onItemDoubleClicked",
+    "QModelIndex",
+    "index",
+    "handleDescribeResponse"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[28];
     char stringdata0[11];
     char stringdata1[22];
     char stringdata2[1];
@@ -60,6 +65,11 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata6[19];
     char stringdata7[12];
     char stringdata8[5];
+    char stringdata9[22];
+    char stringdata10[20];
+    char stringdata11[12];
+    char stringdata12[6];
+    char stringdata13[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -73,7 +83,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(75, 23),  // "on_pushButton_3_clicked"
         QT_MOC_LITERAL(99, 18),  // "handleDatabaseList"
         QT_MOC_LITERAL(118, 11),  // "processData"
-        QT_MOC_LITERAL(130, 4)   // "data"
+        QT_MOC_LITERAL(130, 4),  // "data"
+        QT_MOC_LITERAL(135, 21),  // "handleCurrentDatabase"
+        QT_MOC_LITERAL(157, 19),  // "onItemDoubleClicked"
+        QT_MOC_LITERAL(177, 11),  // "QModelIndex"
+        QT_MOC_LITERAL(189, 5),  // "index"
+        QT_MOC_LITERAL(195, 22)   // "handleDescribeResponse"
     },
     "MainWindow",
     "on_pushButton_clicked",
@@ -83,7 +98,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_pushButton_3_clicked",
     "handleDatabaseList",
     "processData",
-    "data"
+    "data",
+    "handleCurrentDatabase",
+    "onItemDoubleClicked",
+    "QModelIndex",
+    "index",
+    "handleDescribeResponse"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -95,7 +115,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -103,12 +123,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    0,   54,    2, 0x08,    5 /* Private */,
-       7,    1,   55,    2, 0x08,    6 /* Private */,
+       1,    0,   68,    2, 0x08,    1 /* Private */,
+       3,    0,   69,    2, 0x08,    2 /* Private */,
+       4,    0,   70,    2, 0x08,    3 /* Private */,
+       5,    0,   71,    2, 0x08,    4 /* Private */,
+       6,    0,   72,    2, 0x08,    5 /* Private */,
+       7,    1,   73,    2, 0x08,    6 /* Private */,
+       9,    0,   76,    2, 0x08,    8 /* Private */,
+      10,    1,   77,    2, 0x08,    9 /* Private */,
+      13,    1,   80,    2, 0x08,   11 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -116,6 +139,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QByteArray,    8,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 11,   12,
     QMetaType::Void, QMetaType::QByteArray,    8,
 
        0        // eod
@@ -142,6 +168,14 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'processData'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QByteArray &, std::false_type>,
+        // method 'handleCurrentDatabase'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onItemDoubleClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>,
+        // method 'handleDescribeResponse'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QByteArray &, std::false_type>
     >,
     nullptr
@@ -159,6 +193,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_pushButton_3_clicked(); break;
         case 4: _t->handleDatabaseList(); break;
         case 5: _t->processData((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 6: _t->handleCurrentDatabase(); break;
+        case 7: _t->onItemDoubleClicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 8: _t->handleDescribeResponse((*reinterpret_cast< std::add_pointer_t<QByteArray>>(_a[1]))); break;
         default: ;
         }
     }
@@ -183,13 +220,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }
