@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle("sql-minus客户端");
     ui->disconnect->setEnabled(false);
+    ui->jiegou->setEnabled(false);
     ui->file->setEditTriggers(QAbstractItemView::NoEditTriggers);
     model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({"数据库"}); // 设置列标题
@@ -36,6 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
 
         if (receivedData.startsWith("DESCRIBE_RESPONSE")) {
             handleDescribeResponse(receivedData);
+        }
+
+        if(receivedData.startsWith("SELECT_RESPONSE")){
+            handleSelectResponse(receivedData);
         }
     });
 
@@ -158,13 +163,19 @@ void MainWindow::handleCurrentDatabase() {
 
 void MainWindow::onItemDoubleClicked(const QModelIndex &index) {
     if (index.isValid()) {
-        QString data = index.data(Qt::DisplayRole).toString();
-        qDebug() << "双击的节点:" << data;
+        data1 = index.data(Qt::DisplayRole).toString();
+        qDebug() << "双击的节点:" << data1;
         // 在此添加自定义处理逻辑
 
-        if (!currentDatabase.isEmpty() && !data.isEmpty()) {
-            QString request = QString("DESCRIBE %1;").arg(data);
+        if (!currentDatabase.isEmpty() && !data1.isEmpty()) {
+            if(!ui->jiegou->isEnabled()){
+            QString request = QString("DESCRIBE %1;").arg(data1);
             m_tcp->write(request.toUtf8());  // 发送请求给服务器查询表结构
+            }
+            else{
+            QString request = QString("SELECT * FROM %1;").arg(data1);
+            m_tcp->write(request.toUtf8());
+            }
         }
     }
 }
@@ -202,3 +213,97 @@ void MainWindow::handleDescribeResponse(const QByteArray &data) {
     // 将表格模型设置到 QTableView 中显示
     ui->table->setModel(model);
 }
+
+
+void MainWindow::handleSelectResponse(const QByteArray &data) {
+    // 清理旧模型
+    QAbstractItemModel* oldModel = ui->table->model();
+    if (oldModel) oldModel->deleteLater();
+
+    QStandardItemModel *model = new QStandardItemModel(this);
+    ui->table->setModel(model);
+
+    QString text = QString::fromUtf8(data).trimmed();
+    QStringList lines = text.split('\n', Qt::SkipEmptyParts);
+
+    QStringList headers;
+    bool isHeaderSet = false;
+    bool isInDataSection = false; // 新增状态标记
+
+    for (const QString &line : lines) {
+        QString trimmedLine = line.trimmed();
+
+        // 1. 识别分隔线（允许更灵活的分隔线格式）
+        if (trimmedLine.startsWith('+') && trimmedLine.endsWith('+')) {
+            if (!isHeaderSet) {
+                // 第一个分隔线后的内容是表头
+                isInDataSection = true;
+            } else {
+                // 第二个分隔线后的内容是数据
+                isInDataSection = true;
+            }
+            continue;
+        }
+
+        // 2. 仅处理分隔线之间的内容
+        if (!isInDataSection) continue;
+
+        // 3. 分割字段并清理空白
+        QStringList fields = trimmedLine.split('|', Qt::SkipEmptyParts);
+        fields.erase(std::remove_if(fields.begin(), fields.end(),
+                                    [](const QString& s){ return s.trimmed().isEmpty(); }),
+                     fields.end());
+
+        // 4. 处理表头或数据
+        if (!isHeaderSet) {
+            headers = fields;
+            model->setHorizontalHeaderLabels(headers);
+            isHeaderSet = true;
+            isInDataSection = false; // 表头处理完毕，等待数据分隔线
+            qDebug() << "[Header]" << headers;
+        } else {
+            if (fields.size() == headers.size()) {
+                QList<QStandardItem*> rowItems;
+                foreach (const QString& field, fields) {
+                    QString cleanField = field.trimmed();
+                    rowItems << new QStandardItem(cleanField);
+                }
+                model->appendRow(rowItems);
+                qDebug() << "[Data Row]" << fields;
+            } else {
+                qWarning() << "列数不匹配，期望" << headers.size()
+                        << "实际" << fields.size() << "内容:" << fields;
+            }
+        }
+    }
+
+    // 显示优化
+    ui->table->resizeColumnsToContents();
+    ui->table->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
+    ui->table->update();
+}
+
+
+void MainWindow::on_jiegou_clicked()
+{
+    ui->jiegou->setEnabled(false);
+    ui->shuju->setEnabled(true);
+    if (!currentDatabase.isEmpty() && !data1.isEmpty()) {
+            QString request = QString("DESCRIBE %1;").arg(data1);
+            m_tcp->write(request.toUtf8());  // 发送请求给服务器查询表结构
+    }
+
+}
+
+
+void MainWindow::on_shuju_clicked()
+{
+    ui->jiegou->setEnabled(true);
+    ui->shuju->setEnabled(false);
+    if (!currentDatabase.isEmpty() && !data1.isEmpty()) {
+        QString request = QString("SELECT * FROM %1;").arg(data1);
+        m_tcp->write(request.toUtf8());
+    }
+
+}
+

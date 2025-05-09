@@ -7,6 +7,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QThread>
+#include <QHeaderView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -39,11 +40,16 @@ private slots:
 
     void handleDescribeResponse(const QByteArray &data);
 
+    void handleSelectResponse(const QByteArray &data);
+
+    void on_jiegou_clicked();
+
+    void on_shuju_clicked();
 
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_tcp;
-    QByteArray data;
+    QString data1;
     QStandardItemModel *model;
     QByteArray receivedData;
     QString currentDatabase;

@@ -168,7 +168,7 @@
      <string>刷新</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="jiegou">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -181,7 +181,7 @@
      <string>结构</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="shuju">
     <property name="geometry">
      <rect>
       <x>60</x>
