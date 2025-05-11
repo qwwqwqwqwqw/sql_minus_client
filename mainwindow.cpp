@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "customTextEdit.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,9 +14,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->file->setEditTriggers(QAbstractItemView::NoEditTriggers);
     model = new QStandardItemModel(this);
     model->setHorizontalHeaderLabels({"数据库"}); // 设置列标题
-    ui->file->setModel(model); // 关联模型到视图
+    ui->file->setModel(model);    // 关联模型到视图
+
 
     m_tcp=new QTcpSocket(this);
+
+    ui->msg->setTextInteractionFlags(Qt::TextEditorInteraction);
+
+    // 2) 连接选区变化信号
+    connect(ui->msg, &QTextEdit::selectionChanged,
+            this, &MainWindow::onMsgSelectionChanged);
+
 
     connect(ui->file, &QTreeView::doubleClicked, this, &MainWindow::onItemDoubleClicked);
 
@@ -73,10 +82,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::onMsgSelectionChanged() {
+    // 读取选中文本（不含富文本标签）
+    QString sel = ui->msg->textCursor().selectedText().trimmed();
+    if (!sel.isEmpty()) {
+        msg = sel;
+        qDebug() << "选中文本：" << sel;
+    }
+}
+
+
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString msg=ui->msg->toPlainText();
     m_tcp->write(msg.toUtf8());
     ui->record->append("客户端:"+msg);
 }
@@ -305,5 +323,11 @@ void MainWindow::on_shuju_clicked()
         m_tcp->write(request.toUtf8());
     }
 
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->msg->clear();
 }
 

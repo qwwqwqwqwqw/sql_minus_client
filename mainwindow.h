@@ -8,6 +8,7 @@
 #include <QStandardItem>
 #include <QThread>
 #include <QHeaderView>
+#include "customTextEdit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -46,6 +47,10 @@ private slots:
 
     void on_shuju_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void onMsgSelectionChanged();
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* m_tcp;
@@ -53,5 +58,7 @@ private:
     QStandardItemModel *model;
     QByteArray receivedData;
     QString currentDatabase;
+    QString msg;
+    CustomTextEdit *edit;
 };
 #endif // MAINWINDOW_H
