@@ -9,6 +9,10 @@
 #include <QThread>
 #include <QHeaderView>
 #include "customTextEdit.h"
+#include <QFile>
+#include <QFileDialog>
+#include <QDir>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -50,6 +54,10 @@ private slots:
     void on_pushButton_2_clicked();
 
     void onMsgSelectionChanged();
+
+    void on_choose_clicked();
+
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;

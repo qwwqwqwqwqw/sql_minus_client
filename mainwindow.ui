@@ -30,19 +30,19 @@
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>490</y>
-      <width>601</width>
-      <height>131</height>
+      <y>540</y>
+      <width>621</width>
+      <height>161</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>640</y>
-      <width>241</width>
-      <height>51</height>
+      <x>890</x>
+      <y>20</y>
+      <width>101</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -52,10 +52,10 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>640</y>
-      <width>231</width>
-      <height>51</height>
+      <x>1000</x>
+      <y>20</y>
+      <width>101</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -65,10 +65,10 @@
    <widget class="QTextEdit" name="msg">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>20</y>
-      <width>601</width>
-      <height>431</height>
+      <x>890</x>
+      <y>50</y>
+      <width>381</width>
+      <height>481</height>
      </rect>
     </property>
    </widget>
@@ -76,13 +76,13 @@
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>460</y>
+      <y>510</y>
       <width>69</width>
       <height>19</height>
      </rect>
     </property>
     <property name="text">
-     <string>历史信息</string>
+     <string>历史信息：</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -204,6 +204,68 @@
     </property>
     <property name="text">
      <string>数据</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="choose">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>0</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择脚本</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>0</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sql编辑器：</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="jiaoben">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>70</y>
+      <width>221</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>40</y>
+      <width>69</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>脚本编辑：</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>0</y>
+      <width>93</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>执行脚本</string>
     </property>
    </widget>
   </widget>

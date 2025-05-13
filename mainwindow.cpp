@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customTextEdit.h"
+#include <QMessageBox>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -89,12 +91,14 @@ void MainWindow::onMsgSelectionChanged() {
         msg = sel;
         qDebug() << "选中文本：" << sel;
     }
+    else msg=ui->msg->toPlainText();
 }
 
 
 
 void MainWindow::on_pushButton_clicked()
 {
+    onMsgSelectionChanged();
     m_tcp->write(msg.toUtf8());
     ui->record->append("客户端:"+msg);
 }
@@ -329,5 +333,44 @@ void MainWindow::on_shuju_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     ui->msg->clear();
+}
+
+
+void MainWindow::on_choose_clicked()
+{
+    // 1. 弹出文件对话框，仅显示 .sql 文件
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("选择 SQL 脚本文件"),
+        QDir::currentPath(),
+        tr("SQL 文件 (*.sql);;所有文件 (*.*)")
+        );  // :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1}
+
+    // 2. 用户取消则直接返回
+    if (fileName.isEmpty()) {
+        return;
+    }
+
+    // 3. 打开文件，只读文本模式
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, tr("打开失败"), file.errorString());
+        return;
+    }  // :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}
+
+    // 4. 读取全部内容到 QString
+    QTextStream in(&file);
+    QString sqlContent = in.readAll();    // :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
+
+    ui->jiaoben->append(sqlContent);
+    file.close();
+
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    m_tcp->write(ui->jiaoben->toPlainText().toUtf8());
+    ui->record->append("客户端:"+ui->jiaoben->toPlainText());
 }
 
