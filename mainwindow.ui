@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="record">
     <property name="geometry">
@@ -35,15 +39,33 @@
       <height>161</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+border: 2px solid purple;
+    padding: 5px;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>20</y>
+      <y>30</y>
       <width>101</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
     </property>
     <property name="text">
      <string>执行</string>
@@ -53,10 +75,22 @@
     <property name="geometry">
      <rect>
       <x>1000</x>
-      <y>20</y>
+      <y>30</y>
       <width>101</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
     </property>
     <property name="text">
      <string>清除</string>
@@ -66,10 +100,15 @@
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>50</y>
+      <y>70</y>
       <width>381</width>
-      <height>481</height>
+      <height>461</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+    padding: 5px;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -81,6 +120,9 @@
       <height>19</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent; </string>
+    </property>
     <property name="text">
      <string>历史信息：</string>
     </property>
@@ -88,64 +130,19 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
+      <x>30</x>
+      <y>20</y>
       <width>271</width>
       <height>101</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/new/prefix1/IMG_20230725_171039.jpg);</string>
+     <string notr="true">image: url(:/new/prefix1/8066af2df4e8f8db97ba1d7e2375cfc.jpg);
+background: transparent; </string>
     </property>
     <property name="text">
      <string/>
     </property>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>150</y>
-      <width>311</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="ip"/>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>IP:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QPushButton" name="disconnect">
-       <property name="text">
-        <string>断开服务器</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QPushButton" name="connect">
-       <property name="text">
-        <string>连接服务器</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Port:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="port"/>
-     </item>
-    </layout>
    </widget>
    <widget class="QTreeView" name="file">
     <property name="geometry">
@@ -155,6 +152,11 @@
       <width>281</width>
       <height>231</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+padding: 5px;</string>
     </property>
    </widget>
    <widget class="QTableView" name="table">
@@ -166,6 +168,11 @@
       <height>401</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+    padding: 5px;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
@@ -175,6 +182,18 @@
       <width>93</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
     </property>
     <property name="text">
      <string>刷新</string>
@@ -189,6 +208,18 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
     <property name="text">
      <string>结构</string>
     </property>
@@ -196,11 +227,23 @@
    <widget class="QPushButton" name="shuju">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>270</y>
       <width>51</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
     </property>
     <property name="text">
      <string>数据</string>
@@ -215,6 +258,18 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
     <property name="text">
      <string>选择脚本</string>
     </property>
@@ -222,11 +277,14 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>880</x>
+      <x>890</x>
       <y>0</y>
       <width>81</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent; </string>
     </property>
     <property name="text">
      <string>sql编辑器：</string>
@@ -241,6 +299,11 @@
       <height>431</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+    padding: 5px;</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
@@ -250,6 +313,9 @@
       <width>69</width>
       <height>19</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent; </string>
     </property>
     <property name="text">
      <string>脚本编辑：</string>
@@ -264,8 +330,150 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
     <property name="text">
      <string>执行脚本</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="disconnect">
+    <property name="geometry">
+     <rect>
+      <x>221</x>
+      <y>208</y>
+      <width>99</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
+    <property name="text">
+     <string>断开服务器</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>158</y>
+      <width>71</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
+    <property name="text">
+     <string>IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>207</y>
+      <width>69</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
+    <property name="text">
+     <string>Port:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ip">
+    <property name="geometry">
+     <rect>
+      <x>87</x>
+      <y>158</y>
+      <width>127</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+    padding: 5px;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="port">
+    <property name="geometry">
+     <rect>
+      <x>87</x>
+      <y>207</y>
+      <width>127</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+border: 2px solid purple;
+    padding: 5px;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="connect">
+    <property name="geometry">
+     <rect>
+      <x>221</x>
+      <y>159</y>
+      <width>99</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(235, 235, 235);
+background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                                      stop:0 #f0f0f0, stop:1 #c0c0c0);  /* 渐变背景模拟光照 */
+    border: 2px solid #808080;          /* 边框颜色（深灰色） */
+    border-top-color: #ffffff;          /* 上边框亮色（模拟光源在左上） */
+    border-left-color: #ffffff;         /* 左边框亮色 */
+    border-radius: 5px;                 /* 圆角 */
+    padding: 5px 10px;                  /* 内边距 */
+    color: #000000;                     /* 文字颜色 */
+    font-weight: bold;                /* 字体加粗 */</string>
+    </property>
+    <property name="text">
+     <string>连接服务器</string>
     </property>
    </widget>
   </widget>

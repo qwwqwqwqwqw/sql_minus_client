@@ -8,7 +8,6 @@
 #include <QStandardItem>
 #include <QThread>
 #include <QHeaderView>
-#include "customTextEdit.h"
 #include <QFile>
 #include <QFileDialog>
 #include <QDir>
@@ -67,6 +66,5 @@ private:
     QByteArray receivedData;
     QString currentDatabase;
     QString msg;
-    CustomTextEdit *edit;
 };
 #endif // MAINWINDOW_H
