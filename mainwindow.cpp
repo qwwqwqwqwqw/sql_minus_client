@@ -373,3 +373,4 @@ void MainWindow::on_pushButton_4_clicked()
     ui->record->append("客户端:"+ui->jiaoben->toPlainText());
 }
 
+//重新上传

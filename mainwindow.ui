@@ -26,8 +26,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextEdit" name="record">
@@ -138,7 +137,8 @@ border: 2px solid purple;
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/new/prefix1/8066af2df4e8f8db97ba1d7e2375cfc.jpg);
-background: transparent; </string>
+
+</string>
     </property>
     <property name="text">
      <string/>
